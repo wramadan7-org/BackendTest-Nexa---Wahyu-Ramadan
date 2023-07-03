@@ -1,0 +1,20 @@
+{
+  "name": "testnexa",
+  "version": "1.0.0",
+  "description": "Test Nexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wahyu Ramadan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http-status": "^1.6.2",
+    "joi": "^17.9.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.4.3"
+  }
+}
