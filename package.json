@@ -2,9 +2,10 @@
   "name": "testnexa",
   "version": "1.0.0",
   "description": "Test Nexa",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
   },
   "author": "Wahyu Ramadan",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "mysql2": "^3.4.3"
+    "mysql2": "^3.4.3",
+    "nodemon": "^2.0.22"
   }
 }
