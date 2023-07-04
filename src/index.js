@@ -41,8 +41,10 @@ app.use((err, req, res, next) => {
       message: err.message,
     });
   } else {
-    res.sendWrapped(err.message, httpStatus.INTERNAL_SERVER_ERROR);
+    res.sendWrapped(err, httpStatus.INTERNAL_SERVER_ERROR);
   }
+
+  next();
 });
 
 app.listen(NODE_PORT, () => {
