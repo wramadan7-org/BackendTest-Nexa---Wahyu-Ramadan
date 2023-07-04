@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  database: "ssd",
+  database: "ss",
 });
 
 const executeQuery = async (query, params) => {
@@ -24,7 +24,7 @@ const executeQuery = async (query, params) => {
     return rows;
   } catch (error) {
     console.log("Gagal koneksi ke database");
-    throw new CustomError(error, 500);
+    throw new CustomError(error.message, 500);
   } finally {
     if (connection) {
       // Release the connection back to the pool
