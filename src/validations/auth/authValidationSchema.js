@@ -8,7 +8,6 @@ const loginSchema = Joi.object({
     .required()
     .error((errors) => {
       errors.forEach((err) => {
-        console.log(err);
         switch (err.code) {
           case "string.alphanum":
             err.message = "Username must only contain alphanumeric characters";
