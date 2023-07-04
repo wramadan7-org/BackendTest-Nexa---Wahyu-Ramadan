@@ -1,4 +1,4 @@
-const { executeQuery } = require("../../../config/database");
+const { executeQuery } = require("../../config/database");
 
 const loginService = async (username, password) => {
   const query = `SELECT * FROM admin WHERE username = '${username}' AND password = '${password}'`;

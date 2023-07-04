@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mysql = require("mysql2/promise");
+const CustomError = require("./customError");
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
@@ -8,7 +9,7 @@ const pool = mysql.createPool({
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  database: DB_NAME,
+  database: "ssd",
 });
 
 const executeQuery = async (query, params) => {
@@ -23,6 +24,7 @@ const executeQuery = async (query, params) => {
     return rows;
   } catch (error) {
     console.log("Gagal koneksi ke database");
+    throw new CustomError(error, 500);
   } finally {
     if (connection) {
       // Release the connection back to the pool
