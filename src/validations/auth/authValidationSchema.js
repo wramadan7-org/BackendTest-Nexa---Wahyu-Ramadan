@@ -8,9 +8,13 @@ const loginSchema = Joi.object({
     .required()
     .error((errors) => {
       errors.forEach((err) => {
+        console.log(err);
         switch (err.code) {
           case "string.alphanum":
             err.message = "Username must only contain alphanumeric characters";
+            break;
+          case "string.empty":
+            err.message = "Username is not allowed to be empty";
             break;
           case "string.min":
             err.message = `Username must be at least ${err.local.limit} characters long`;
@@ -37,6 +41,9 @@ const loginSchema = Joi.object({
         switch (err.code) {
           case "string.alphanum":
             err.message = "Password must only contain alphanumeric characters";
+            break;
+          case "string.empty":
+            err.message = "Password is not allowed to be empty";
             break;
           case "string.min":
             err.message = `Password must be at least ${err.local.limit} characters long`;
