@@ -1,9 +1,9 @@
 require("dotenv").config();
 const httpStatus = require("http-status");
 const jwt = require("jsonwebtoken");
-const CryptoJs = require("crypto-js");
 const { loginService } = require("../../services/auth/authService");
 const { compared } = require("../../helpers/bcryptHelper");
+const { encryptAES } = require("../../helpers/aesHelper");
 const CustomError = require("../../config/customError");
 const { saveToken } = require("../../services/admin/adminService");
 
@@ -24,10 +24,7 @@ const loginController = async (req, res, next) => {
     if (!validPassword)
       return res.sendWrapped("Password incorrect", httpStatus.UNAUTHORIZED);
 
-    const encrypted = CryptoJs.AES.encrypt(
-      JSON.stringify(req.body),
-      AES_SECRET
-    ).toString();
+    const encrypted = await encryptAES(req.body);
 
     const token = jwt.sign({ payload: encrypted }, JWT_SECRET);
 
