@@ -24,7 +24,13 @@ const loginController = async (req, res, next) => {
     if (!validPassword)
       return res.sendWrapped("Password incorrect", httpStatus.UNAUTHORIZED);
 
-    const encrypted = await encryptAES(req.body);
+    const dataEncrypt = {
+      id: validUsername[0].id,
+      username,
+      password,
+    };
+
+    const encrypted = await encryptAES(dataEncrypt);
 
     const token = jwt.sign({ payload: encrypted }, JWT_SECRET);
 
