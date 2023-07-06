@@ -5,6 +5,7 @@ const CryptoJs = require("crypto-js");
 const { loginService } = require("../../services/auth/authService");
 const { compared } = require("../../helpers/bcryptHelper");
 const CustomError = require("../../config/customError");
+const { saveToken } = require("../../services/admin/adminService");
 
 const { JWT_SECRET, AES_SECRET } = process.env;
 
@@ -29,6 +30,8 @@ const loginController = async (req, res, next) => {
     ).toString();
 
     const token = jwt.sign({ payload: encrypted }, JWT_SECRET);
+
+    await saveToken(validUsername[0].id, token);
 
     const response = {
       token: token,
